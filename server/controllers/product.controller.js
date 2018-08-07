@@ -115,6 +115,24 @@ productController.deleteProduct = async (req, res) => {
     res.json({"status": "200"});
 };
 
+productController.activateProduct = async (req, res) => {
+    console.log(req.params);
+    const { id } = req.params;
+
+    await Product.update({_id: id}, {$set: {active: true}}, () => {
+        res.json({"status":"200"});
+    });
+};
+
+productController.deactivateProduct = async (req, res) => {
+    console.log(req.params);
+    const { id } = req.params;
+
+    await Product.update({ _id: id }, { $set: { active: false } }, () => {
+        res.json({ "status": "200" });
+    });
+};
+
 module.exports = productController;
 
 /** this ends this file
