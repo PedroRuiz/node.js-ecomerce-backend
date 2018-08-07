@@ -36,6 +36,7 @@ router.get('/actives/count', productsController.getActivesCount);
 router.get('/inactives', productsController.getInactives);
 router.get('/inactives/count', productsController.getActivesCount);
 router.get('/:id', productsController.getProduct);
+router.delete('/:id', productsController.deleteProduct);
 
 module.exports = router;
 

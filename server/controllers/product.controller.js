@@ -107,6 +107,14 @@ productController.getProduct = async (req, res) => {
     res.json(product);
 };
 
+productController.deleteProduct = async (req, res) => {
+    const { id } = req.params;
+
+    await Product.findByIdAndRemove(id);
+
+    res.json({"status": "200"});
+};
+
 module.exports = productController;
 
 /** this ends this file
