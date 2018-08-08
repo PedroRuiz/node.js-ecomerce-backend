@@ -39,6 +39,13 @@ router.get('/activate/:id', productsController.activateProduct);
 router.get('/deactivate/:id', productsController.deactivateProduct);
 
 router.put('/:id', productsController.editProduct);
+/*
+    send as request body:
+
+    {
+        "image": "https://unsplash.com/photos/yC-Yzbqy7PY"
+    }
+*/
 router.put('/addimage/:id', productsController.addImage);
 
 router.post('/', productsController.createProduct);
