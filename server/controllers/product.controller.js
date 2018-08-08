@@ -133,6 +133,29 @@ productController.deactivateProduct = async (req, res) => {
     });
 };
 
+productController.addImage = async (req, res) => {
+    const { id } = req.params;
+    
+    const image = {
+        image: req.body.image
+    };
+    const product = await Product.findById(req.params.id);
+    
+    product.images.push(image);
+    await product.save( (err) => {
+        if(err) {
+            res.json(err);
+        }
+        else {
+            res.json({"status": "200"});
+        }
+    });
+    
+};
+
+
+    
+
 module.exports = productController;
 
 /** this ends this file

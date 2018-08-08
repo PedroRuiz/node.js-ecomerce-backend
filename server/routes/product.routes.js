@@ -39,6 +39,7 @@ router.get('/:id', productsController.getProduct);
 router.delete('/:id', productsController.deleteProduct);
 router.get('/activate/:id', productsController.activateProduct);
 router.get('/deactivate/:id', productsController.deactivateProduct);
+router.put('/addimage/:id', productsController.addImage);
 
 
 module.exports = router;
