@@ -154,11 +154,16 @@ productController.addImage = async (req, res) => {
 };
 
 productController.brokenStock = async (req, res) => {
-    const products = await Product.find( { $where: "this.broken_stock >= this.stock" } );
+    const broken = await Product.find( { $where: "this.broken_stock >= this.stock" } );
 
-    res.json(products);
+    res.json(broken);
 };
     
+productController.brokenStockCount = async (req, res) => {
+    const broken = await Product.find({ $where: "this.broken_stock >= this.stock" }).countDocuments();
+
+    res.json(broken);
+};
 
 module.exports = productController;
 
