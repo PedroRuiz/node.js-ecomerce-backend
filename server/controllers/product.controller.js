@@ -159,11 +159,6 @@ productController.brokenStock = async (req, res) => {
     res.json(broken);
 };
     
-productController.brokenStockCount = async (req, res) => {
-    const broken = await Product.find({ $where: "this.broken_stock >= this.stock" }).countDocuments();
-
-    res.json(broken);
-};
 
 module.exports = productController;
 
