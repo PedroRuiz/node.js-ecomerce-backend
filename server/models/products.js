@@ -42,7 +42,7 @@ const productSchema = new Schema(
         ubication: { type: String, required: false },
         images: [{ image: String }]
     },
-    {timestamps: true}
+    {timestamps: true, autoIndex: true}
 );
 
 

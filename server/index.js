@@ -43,7 +43,7 @@ app.use(express.json());
  * R O U T E S
  */ 
 app.use('/api/products', require('./routes/product.routes'));
-
+app.use('/api/clients', require('./routes/clients.routes'));
 
 /**
  * S T A R T I N G   S E R V E R

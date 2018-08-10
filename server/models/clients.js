@@ -25,27 +25,47 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const Client = new Schema({
+const ClientSchema = new Schema({
     first_name: { type: String, required: true },
-    second_name: { type: String, required: true },
-    tax_id: { type: String, required: true, unique: true },
+    last_name: { type: String, required: false },
+    nick_name: { type: String, required: false, description: "too known as... as trade marks, and other"},
+    
+    tax_id: {
+        tax_type: { type: String, required: true },
+        tax_code: { type: String, requied: true, unique: true },
+    },
+    
+    emails: [{
+        email: {type: String, required: false},
+        verified: { type: Boolean, required: false, default: false },
+        
+        required: false
+    }],
+    
     addresses: [{
-        street: { type: String, required: false },
-        city: { type: String, required: false },
-        province: { type: String, required: false },
-        zip: { type: String, required: false },
+        contact: {type: String, required: false, description: "use if client is not your contact"},
+        street: { type: String, required: true },
+        city: { type: String, required: true },
+        province: { type: String, required: true },
+        zip: { type: String, required: true },
+        
         required: false
     }],
+    
     phones: [{
-        type: { enum: ["mobile", "phone", null] },
-        number: { type: String, required: false },
+        phoneType: { type: String, required: false },
+        prefix: { type: String, required: false},
+        number: { type: String, required: true },
+        subfix: { type: String, requied: false},
+        memo: { type: String, required: false, description: "use if you need other data" },
+        
         required: false
     }],
-},{timestamps: true});
+},{timestamps: true, autoIndex:true});
 
-module.exports = Client;
+ClientSchema.index
 
-
+module.exports = mongoose.model('customers', ClientSchema);
 
 
 
