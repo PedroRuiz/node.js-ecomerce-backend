@@ -29,6 +29,7 @@ const router = express.Router();
 const clientsController = require('../controllers/clients.controller');
 
 router.get('/', clientsController.getClients);
+router.get('/:id', clientsController.getClient);
 
 router.post('/', clientsController.createClient);
 router.post('/newemail/:id', clientsController.pushEmails);
