@@ -255,6 +255,16 @@ clientsController.deleteClient = async (req, res) => {
         });
 };
 
+clientsController.getClient = async (req,res) => {
+    const { id } = req.params;
+
+    await Clients.findById(id)
+        .then( (response) => {
+            res.json(response);
+        }
+    );
+}
+
 
 module.exports = clientsController;
 
