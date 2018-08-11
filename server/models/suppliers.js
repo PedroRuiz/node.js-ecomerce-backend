@@ -32,12 +32,10 @@ const SupplierSchema = new Schema({
     nick_name: { type: String, required: false, description: "too known as... as trade marks, and other", trim: true },
     commercial_name: { type: String, required: false, trim: true },
     tax_id: {
-        tax_type: { type, String, enum: ['personal', 'company', 'other'], required: true },
+        tax_type: { type: String, enum: ['personal', 'company', 'other'], required: true },
         tax_code: { type: String, requied: true, unique: true },
-        taxespercent: { type: number, default: 21, requied: true},
-        withholding_tax: { type: number, default: 0, requied: true},
-
-        required: true
+        taxespercent: { type: Number, default: 21, requied: true},
+        withholding_tax: { type: Number, default: 0, requied: true}
     },
 
     emails: [{
@@ -46,9 +44,13 @@ const SupplierSchema = new Schema({
 
         required: false
     }],
+    webs: [{
+        web: { type: String, required: false, trim: true },
 
+        required: false
+    }],
     addresses: [{
-        contact: { type: String, required: false, description: "use if client is not your contact", trim: true },
+        contact: { type: String, required: false, description: "use if supplier is not your contact", trim: true },
         street: { type: String, required: true, trim: true },
         city: { type: String, required: true, trim: true },
         province: { type: String, required: true, trim: true },
