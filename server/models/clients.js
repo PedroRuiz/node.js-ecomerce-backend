@@ -51,7 +51,6 @@ const ClientSchema = new Schema({
         
         required: false
     }],
-    
     phones: [{
         phoneType: { type: String, required: false },
         prefix: { type: String, required: false},
@@ -61,6 +60,14 @@ const ClientSchema = new Schema({
         
         required: false
     }],
+    payment_cards: [{
+        card_name: { type: String, requied: true, index: true, trim: true},
+        card_number: { type: String, required: true, index: true, trim: true},
+        expiry_date: { type: Date, requied: true, trim: true},
+        zip: { type: String, trim: true, required: false},
+    
+        requied: false
+    }]
 },{timestamps: true, autoIndex:true});
 
 ClientSchema.index

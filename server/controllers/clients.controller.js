@@ -263,7 +263,55 @@ clientsController.getClient = async (req,res) => {
             res.json(response);
         }
     );
-}
+};
+
+clientsController.pushPaymentCard = async (req, res) => {
+    const payment_card = req.body;
+    const { id } = req.params;
+
+    await Clients.findById(id)
+        .then((client) => {
+            client.payment_cards.push(payment_card);
+            client.save();
+        }).catch(e => console.log(e))
+        .then(
+            res.json({ "status": "200" })
+        );
+};
+
+clientsController.editPaymentCard = async (req, res) => {
+    const { id } = req.params;
+    const { idcard } = req.params;
+
+    await Clients.findOneAndUpdate(
+        { "_id": id, "payment_cards._id": idcard },
+        { "$set": { "payment_cards.$": req.body } }
+    )
+        .then(doc => {
+            res.json({ "status": "200" });
+        })
+        .catch(e => {
+            console.log(e);
+        });
+};
+
+clientsController.deletePaymentCard = async (req, res) => {
+    const { idcard } = req.params;
+    const { id } = req.params;
+
+    await Clients.update(
+        { _id: id },
+        { $pull: { payment_cards: { _id: idcard } } },
+        { safe: true }
+    )
+        .then((response) => {
+            console.log(response);
+        })
+        .catch(e => console.log(e))
+        .then(() => {
+            res.json({ "status": "200" });
+        });
+};
 
 
 module.exports = clientsController;
